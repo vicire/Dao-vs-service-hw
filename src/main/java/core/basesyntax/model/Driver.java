@@ -12,7 +12,7 @@ public class Driver {
         this.licenseNumber = licenseNumber;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

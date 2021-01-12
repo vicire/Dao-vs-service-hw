@@ -16,7 +16,7 @@ public class Car {
         this.drivers = new ArrayList<>();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

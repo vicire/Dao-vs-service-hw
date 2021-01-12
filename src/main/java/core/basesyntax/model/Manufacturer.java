@@ -12,7 +12,7 @@ public class Manufacturer {
         this.country = country;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -57,8 +57,8 @@ public class Manufacturer {
 
     @Override
     public String toString() {
-        return "id " + id
+        return "{id " + id
                 + "; model: " + name
-                + "; produced country - " + country;
+                + "; produced country - " + country + "}";
     }
 }

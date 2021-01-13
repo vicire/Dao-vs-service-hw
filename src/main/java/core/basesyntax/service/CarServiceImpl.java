@@ -7,8 +7,6 @@ import core.basesyntax.lib.Service;
 import core.basesyntax.model.Car;
 import core.basesyntax.model.Driver;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -45,27 +43,18 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void addDriverToCar(Driver driver, Car car) {
-        if (!driverDao.getAll().contains(driver)) {
-            driverDao.create(driver);
-        }
         car.getDrivers().add(driver);
         carDao.update(car);
     }
 
     @Override
     public void removeDriverFromCar(Driver driver, Car car) {
-        car.getDrivers().removeIf(driver1 -> Objects.equals(driver1, driver));
+        car.getDrivers().remove(driver);
         carDao.update(car);
     }
 
     @Override
     public List<Car> getAllByDriver(Long driverId) {
-        return getAll().stream()
-                .filter(car -> car.getDrivers()
-                        .stream()
-                        .map(Driver::getId)
-                        .collect(Collectors.toList())
-                        .contains(driverId))
-                .collect(Collectors.toList());
+        return carDao.getAllByDriver(driverId);
     }
 }

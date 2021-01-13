@@ -3,6 +3,7 @@ package core.basesyntax.dao;
 import core.basesyntax.db.Storage;
 import core.basesyntax.lib.Dao;
 import core.basesyntax.model.Driver;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -25,12 +26,13 @@ public class DriverDaoImpl implements DriverDao {
 
     @Override
     public List<Driver> getAll() {
-        return Storage.drivers;
+        return new ArrayList<>(Storage.drivers);
     }
 
     @Override
     public Driver update(Driver driver) {
-        return Storage.drivers.set(Storage.drivers.indexOf(driver), driver);
+        Driver driverForCheck = get(driver.getId()).get();
+        return Storage.drivers.set(Storage.drivers.indexOf(driverForCheck), driver);
     }
 
     @Override

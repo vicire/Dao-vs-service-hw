@@ -3,6 +3,7 @@ package core.basesyntax.dao;
 import core.basesyntax.db.Storage;
 import core.basesyntax.lib.Dao;
 import core.basesyntax.model.Manufacturer;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -25,13 +26,14 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
 
     @Override
     public List<Manufacturer> getAll() {
-        return Storage.manufacturers;
+        return new ArrayList<>(Storage.manufacturers);
     }
 
     @Override
     public Manufacturer update(Manufacturer manufacturer) {
+        Manufacturer manufacturerForCheck = get(manufacturer.getId()).get();
         return Storage.manufacturers
-                .set(Storage.manufacturers.indexOf(manufacturer), manufacturer);
+                    .set(Storage.manufacturers.indexOf(manufacturerForCheck), manufacturer);
     }
 
     @Override

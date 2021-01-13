@@ -3,7 +3,7 @@ package core.basesyntax.model;
 import java.util.Objects;
 
 public class Manufacturer {
-    private long id;
+    private Long id;
     private String name;
     private String country;
 

@@ -31,7 +31,7 @@ public class ManufacturerJdbcDaoImpl implements ManufacturerDao {
             createdStatement.execute();
             ResultSet resultSet = createdStatement.getGeneratedKeys();
             if (resultSet.next()) {
-                manufacturer.setId(resultSet.getLong(INDEX_ONE));
+                manufacturer.setId((Long)resultSet.getObject(INDEX_ONE));
             }
             createdStatement.close();
         } catch (SQLException e) {

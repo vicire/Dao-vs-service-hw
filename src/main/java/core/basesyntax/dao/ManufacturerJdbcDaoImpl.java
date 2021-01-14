@@ -28,7 +28,7 @@ public class ManufacturerJdbcDaoImpl implements ManufacturerDao {
             createdStatement.execute();
             ResultSet resultSet = createdStatement.getGeneratedKeys();
             if (resultSet.next()) {
-                manufacturer.setId(resultSet.getLong(1));
+                manufacturer.setId(resultSet.getObject(1, Long.class));
             }
         } catch (SQLException e) {
             throw new DataProcessingException("Can`t add manufacturer " + manufacturer, e);

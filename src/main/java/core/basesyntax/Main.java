@@ -57,6 +57,7 @@ public class Main {
         carService.create(carUsa);
         carService.addDriverToCar(driverService.get(2L), carService.get(1L));
         carService.addDriverToCar(driverService.get(3L), carService. get(2L));
+        System.out.println(carService.getAll());
         carService.addDriverToCar(driverService.get(3L), carService.get(1L));
         System.out.println(carService.getAll());
         Car updatedCar = carService.get(3L);

@@ -24,9 +24,9 @@ public class DriverJdbcDaoImpl implements DriverDao {
             createdDriver.setString(1, driver.getName());
             createdDriver.setString(2, driver.getLicenseNumber());
             createdDriver.executeUpdate();
-            ResultSet result = createdDriver.getGeneratedKeys();
-            if (result.next()) {
-                driver.setId(result.getObject(1, Long.class));
+            ResultSet resultSet = createdDriver.getGeneratedKeys();
+            if (resultSet.next()) {
+                driver.setId(resultSet.getObject(1, Long.class));
             }
             return driver;
         } catch (SQLException e) {
@@ -42,9 +42,9 @@ public class DriverJdbcDaoImpl implements DriverDao {
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement gettingDriver = connection.prepareStatement(query)) {
             gettingDriver.setLong(1, id);
-            ResultSet result = gettingDriver.executeQuery();
-            if (result.next()) {
-                driver = getDriver(result);
+            ResultSet resultSet = gettingDriver.executeQuery();
+            if (resultSet.next()) {
+                driver = getDriver(resultSet);
             }
             return Optional.ofNullable(driver);
         } catch (SQLException e) {
@@ -58,9 +58,9 @@ public class DriverJdbcDaoImpl implements DriverDao {
         List<Driver> allDrivers = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement gettingAll = connection.prepareStatement(query)) {
-            ResultSet result = gettingAll.executeQuery();
-            while (result.next()) {
-                allDrivers.add(getDriver(result));
+            ResultSet resultSet = gettingAll.executeQuery();
+            while (resultSet.next()) {
+                allDrivers.add(getDriver(resultSet));
             }
             return allDrivers;
         } catch (SQLException e) {

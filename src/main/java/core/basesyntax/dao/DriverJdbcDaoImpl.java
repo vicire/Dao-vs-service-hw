@@ -26,7 +26,7 @@ public class DriverJdbcDaoImpl implements DriverDao {
             createdDriver.executeUpdate();
             ResultSet resultSet = createdDriver.getGeneratedKeys();
             if (resultSet.next()) {
-                driver.setId(resultSet.getObject(1, Long.class));
+                driver.setId(resultSet.getObject("GENERATED_KEY", Long.class));
             }
             return driver;
         } catch (SQLException e) {
@@ -98,7 +98,7 @@ public class DriverJdbcDaoImpl implements DriverDao {
 
     static Driver getDriver(ResultSet result) {
         try {
-            Long id = result.getObject(1, Long.class);
+            Long id = result.getObject("driver_id", Long.class);
             String name = result.getString("name");
             String licenseNumber = result.getString("licenseNumber");
             Driver driver = new Driver(name, licenseNumber);

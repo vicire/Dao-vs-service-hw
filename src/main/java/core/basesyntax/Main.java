@@ -49,9 +49,9 @@ public class Main {
         System.out.println(" ");
 
         CarService carService = (CarService) injector.getInstance(CarService.class);
-        Car carAustria = new Car("T100", manufacturerAudi1);
-        Car carItaly = new Car("G3", manufacturerAlfa);
-        Car carUsa = new Car("500", manufacturerLincoln);
+        Car carAustria = new Car("T100", manufacturerService.get(1L));
+        Car carItaly = new Car("G3", manufacturerService.get(3L));
+        Car carUsa = new Car("500", manufacturerService.get(4L));
         carService.create(carAustria);
         carService.create(carItaly);
         carService.create(carUsa);
@@ -67,7 +67,7 @@ public class Main {
         System.out.println(carService.getAll());
         carService.delete(2L);
         carService.removeDriverFromCar(driverService.get(2L), carService.get(1L));
-        System.out.println(carService.getAllByDriver(3L));
+        System.out.println(carService.getAllByDriver(2L));
         System.out.println(carService.getAll());
     }
 }

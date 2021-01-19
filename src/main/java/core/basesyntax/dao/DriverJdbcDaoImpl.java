@@ -36,7 +36,8 @@ public class DriverJdbcDaoImpl implements DriverDao {
 
     @Override
     public Optional<Driver> get(Long id) {
-        String query = "SELECT * FROM drivers WHERE driver_id = ? AND deleted = FALSE";
+        String query = "SELECT driver_id, name, licenseNumber "
+                + "FROM drivers WHERE driver_id = ? AND deleted = FALSE";
         Driver driver = null;
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement gettingDriver = connection.prepareStatement(query)) {
@@ -95,7 +96,7 @@ public class DriverJdbcDaoImpl implements DriverDao {
         }
     }
 
-    private Driver getDriver(ResultSet result) {
+    static Driver getDriver(ResultSet result) {
         try {
             Long id = result.getObject(1, Long.class);
             String name = result.getString("name");

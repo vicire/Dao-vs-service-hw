@@ -1,7 +1,7 @@
 CREATE SCHEMA `taxi-service` DEFAULT CHARACTER SET utf8 ;
 CREATE TABLE `taxi_service`.`manufacturers` (
                                                 `manufacturer_id` BIGINT(11) NOT NULL AUTO_INCREMENT,
-                                                `name` VARCHAR(225) NOT NULL,
+                                                `brand` VARCHAR(225) NOT NULL,
                                                 `country` VARCHAR(225) NOT NULL,
                                                 `deleted` TINYINT NOT NULL,
                                                 PRIMARY KEY (`manufacturer_id`));

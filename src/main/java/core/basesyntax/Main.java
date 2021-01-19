@@ -67,7 +67,7 @@ public class Main {
         System.out.println(carService.getAll());
         carService.delete(2L);
         carService.removeDriverFromCar(driverService.get(2L), carService.get(1L));
-        System.out.println(carService.getAllByDriver(2L));
+        System.out.println(carService.getAllByDriver(3L));
         System.out.println(carService.getAll());
     }
 }

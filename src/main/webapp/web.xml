@@ -7,11 +7,110 @@
 
     <servlet>
         <servlet-name>index</servlet-name>
-        <servlet-class>core.basesyntax.controllers.IndexController</servlet-class>
+        <servlet-class>core.basesyntax.controller.IndexController</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>index</servlet-name>
-        <url-pattern>/index</url-pattern>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AllDrivers</servlet-name>
+        <servlet-class>core.basesyntax.controller.AllDriversController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AllDrivers</servlet-name>
+        <url-pattern>/driver/all</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreateDriver</servlet-name>
+        <servlet-class>core.basesyntax.controller.CreateDriverController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CreateDriver</servlet-name>
+        <url-pattern>/driver/creation</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AllManufacturers</servlet-name>
+        <servlet-class>core.basesyntax.controller.AllManufacturersController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AllManufacturers</servlet-name>
+        <url-pattern>/manufacturer/all</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreateManufacturer</servlet-name>
+        <servlet-class>core.basesyntax.controller.CreateManufacturerController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CreateManufacturer</servlet-name>
+        <url-pattern>/manufacturer/creation</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AllCars</servlet-name>
+        <servlet-class>core.basesyntax.controller.AllCarsController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AllCars</servlet-name>
+        <url-pattern>/car/all</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CreateCar</servlet-name>
+        <servlet-class>core.basesyntax.controller.CreateCarController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CreateCar</servlet-name>
+        <url-pattern>/car/creation</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddDriverToCar</servlet-name>
+        <servlet-class>core.basesyntax.controller.AddDriverToCarController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddDriverToCar</servlet-name>
+        <url-pattern>/car/driverToCar</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteDriver</servlet-name>
+        <servlet-class>core.basesyntax.controller.DeleteDriverController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteDriver</servlet-name>
+        <url-pattern>/driver/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteManufacturer</servlet-name>
+        <servlet-class>core.basesyntax.controller.DeleteManufacturerController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteManufacturer</servlet-name>
+        <url-pattern>/manufacturer/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteCar</servlet-name>
+        <servlet-class>core.basesyntax.controller.DeleteCarController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteCar</servlet-name>
+        <url-pattern>/car/delete</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -2,5 +2,5 @@ package core.basesyntax.service;
 
 import core.basesyntax.model.Driver;
 
-public interface DriverService extends Service<Driver, Long> {
+public interface DriverService extends GenericService<Driver, Long> {
 }

@@ -1,11 +1,12 @@
-package core.basesyntax.service;
+package core.basesyntax.dao;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface Service<T, I> {
+public interface GenericDao<T, I> {
     T create(T value);
 
-    T get(I id);
+    Optional<T> get(I id);
 
     List<T> getAll();
 

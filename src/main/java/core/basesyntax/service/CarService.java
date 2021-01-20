@@ -4,7 +4,7 @@ import core.basesyntax.model.Car;
 import core.basesyntax.model.Driver;
 import java.util.List;
 
-public interface CarService extends Service<Car, Long> {
+public interface CarService extends GenericService<Car, Long> {
 
     void addDriverToCar(Driver driver, Car car);
 

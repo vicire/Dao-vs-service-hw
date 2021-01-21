@@ -15,7 +15,7 @@
 <h4 style="color: red">${message}</h4>
 <form method="post" action="${pageContext.request.contextPath}/car/creation">
     Please, fill car`s model: <input type="text" name="model" required>
-    and manufacturer id: <input type="text" name="manufacturer_id" required>
+    and manufacturer id: <input type="number" name="manufacturer_id" required>
     <button type="submit">Create</button>
 </form>
 </body>

@@ -7,8 +7,8 @@
 <h1>Please, provide car and driver id</h1>
 <h4 style="color: red">${message}</h4>
 <form method="post" action="${pageContext.request.contextPath}/car/driverToCar">
-    Please, enter car id: <input type="text" name="car_id">
-    and driver id: <input type="text" name="driver_id">
+    Please, enter car id: <input type="number" name="car_id" required>
+    and driver id: <input type="number" name="driver_id" required>
     <button type="submit">Create</button>
 </form>
 </body>

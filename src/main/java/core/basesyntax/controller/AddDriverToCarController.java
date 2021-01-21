@@ -34,9 +34,6 @@ public class AddDriverToCarController extends HttpServlet {
             Driver driver = driverService.get(driverId);
             carService.addDriverToCar(driver, car);
             resp.sendRedirect(req.getContextPath() + "/car/");
-        } catch (NumberFormatException e) {
-            req.setAttribute("message", "Please, enter numeric id");
-            req.getRequestDispatcher("/WEB-INF/views/car/driverToCar.jsp").forward(req, resp);
         } catch (NoSuchElementException e) {
             req.setAttribute("message", "There is no such id, please enter valid id");
             req.getRequestDispatcher("/WEB-INF/views/car/driverToCar.jsp").forward(req, resp);

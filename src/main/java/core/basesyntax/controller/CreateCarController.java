@@ -32,9 +32,6 @@ public class CreateCarController extends HttpServlet {
             Car car = new Car(model, manufacturerService.get(manufacturerId));
             carService.create(car);
             resp.sendRedirect(req.getContextPath() + "/");
-        } catch (NumberFormatException e) {
-            req.setAttribute("message", "Please, enter numeric id");
-            req.getRequestDispatcher("/WEB-INF/views/car/creation.jsp").forward(req, resp);
         } catch (NoSuchElementException e) {
             req.setAttribute("message", "There is no such manufacturer id, "
                     + "please enter valid id");

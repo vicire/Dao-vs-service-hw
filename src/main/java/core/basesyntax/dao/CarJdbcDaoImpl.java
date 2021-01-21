@@ -99,7 +99,7 @@ public class CarJdbcDaoImpl implements CarDao {
     public Car update(Car car) {
         String updateQuery = "UPDATE cars SET model = ?, manufacturer_id = ? "
                 + "WHERE car_id = ? AND deleted = FALSE";
-        String deleteQuery = "DELETE FROM cars_drivers WHERE car_id = ?";
+        String deleteQuery = "DELETE FROM cars_drivers WHERE car_id = ? AND driver_id IS NOT NULL";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement updatedCar = connection.prepareStatement(updateQuery);
                 PreparedStatement deletedRelations = connection.prepareStatement(deleteQuery)) {

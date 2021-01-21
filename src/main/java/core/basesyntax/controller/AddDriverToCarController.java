@@ -38,6 +38,5 @@ public class AddDriverToCarController extends HttpServlet {
             req.setAttribute("message", "There is no such id, please enter valid id");
             req.getRequestDispatcher("/WEB-INF/views/car/driverToCar.jsp").forward(req, resp);
         }
-
     }
 }

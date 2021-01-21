@@ -6,7 +6,6 @@ import core.basesyntax.model.Driver;
 import core.basesyntax.service.CarService;
 import core.basesyntax.service.DriverService;
 import java.io.IOException;
-import java.util.NoSuchElementException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,22 +20,17 @@ public class AddDriverToCarController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/car/driverToCar.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/cars/addDriver.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        try {
-            Long driverId = Long.valueOf(req.getParameter("driver_id"));
-            Long carId = Long.valueOf(req.getParameter("car_id"));
-            Car car = carService.get(carId);
-            Driver driver = driverService.get(driverId);
-            carService.addDriverToCar(driver, car);
-            resp.sendRedirect(req.getContextPath() + "/car/");
-        } catch (NoSuchElementException e) {
-            req.setAttribute("message", "There is no such id, please enter valid id");
-            req.getRequestDispatcher("/WEB-INF/views/car/driverToCar.jsp").forward(req, resp);
-        }
+        Long driverId = Long.valueOf(req.getParameter("driver_id"));
+        Long carId = Long.valueOf(req.getParameter("car_id"));
+        Car car = carService.get(carId);
+        Driver driver = driverService.get(driverId);
+        carService.addDriverToCar(driver, car);
+        resp.sendRedirect(req.getContextPath() + "/cars/");
     }
 }

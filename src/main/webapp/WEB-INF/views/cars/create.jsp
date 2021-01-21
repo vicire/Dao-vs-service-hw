@@ -6,7 +6,7 @@
 <body>
 <h1>Please, provide cars details</h1>
 <h4 style="color: red">${message}</h4>
-<form method="post" action="${pageContext.request.contextPath}/car/creation">
+<form method="post" action="${pageContext.request.contextPath}/cars/create">
     Please, fill car`s model: <input type="text" name="model" required>
     and manufacturer id: <input type="number" name="manufacturer_id" required>
     <button type="submit">Create</button>

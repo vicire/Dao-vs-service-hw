@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AllManufacturersController extends HttpServlet {
-    private static final Injector ingector = Injector.getInstance("core.basesyntax");
-    private final ManufacturerService manufacturerService = (ManufacturerService) ingector
+public class GetAllManufacturersController extends HttpServlet {
+    private static final Injector INJECTOR = Injector.getInstance("core.basesyntax");
+    private final ManufacturerService manufacturerService = (ManufacturerService) INJECTOR
             .getInstance(ManufacturerService.class);
 
     @Override

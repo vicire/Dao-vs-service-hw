@@ -6,15 +6,16 @@ import core.basesyntax.model.Driver;
 import core.basesyntax.service.CarService;
 import core.basesyntax.service.DriverService;
 import java.io.IOException;
+import java.util.NoSuchElementException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class AddDriverToCarController extends HttpServlet {
-    private static final Injector injector = Injector.getInstance("core.basesyntax");
-    private final CarService carService = (CarService) injector.getInstance(CarService.class);
-    private final DriverService driverService = (DriverService) injector
+    private static final Injector INJECTOR = Injector.getInstance("core.basesyntax");
+    private final CarService carService = (CarService) INJECTOR.getInstance(CarService.class);
+    private final DriverService driverService = (DriverService) INJECTOR
             .getInstance(DriverService.class);
 
     @Override
@@ -26,11 +27,20 @@ public class AddDriverToCarController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Long driverId = Long.valueOf(req.getParameter("driver_id"));
-        Long carId = Long.valueOf(req.getParameter("car_id"));
-        Car car = carService.get(carId);
-        Driver driver = driverService.get(driverId);
-        carService.addDriverToCar(driver, car);
-        resp.sendRedirect(req.getContextPath() + "/car/all");
+        try {
+            Long driverId = Long.valueOf(req.getParameter("driver_id"));
+            Long carId = Long.valueOf(req.getParameter("car_id"));
+            Car car = carService.get(carId);
+            Driver driver = driverService.get(driverId);
+            carService.addDriverToCar(driver, car);
+            resp.sendRedirect(req.getContextPath() + "/car/");
+        } catch (NumberFormatException e) {
+            req.setAttribute("message", "Please, enter numeric id");
+            req.getRequestDispatcher("/WEB-INF/views/car/driverToCar.jsp").forward(req, resp);
+        } catch (NoSuchElementException e) {
+            req.setAttribute("message", "There is no such id, please enter valid id");
+            req.getRequestDispatcher("/WEB-INF/views/car/driverToCar.jsp").forward(req, resp);
+        }
+
     }
 }

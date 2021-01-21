@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AllDriversController extends HttpServlet {
-    private static final Injector ingector = Injector.getInstance("core.basesyntax");
-    private final DriverService driverService = (DriverService) ingector
+public class GetAllDriversController extends HttpServlet {
+    private static final Injector INJECTOR = Injector.getInstance("core.basesyntax");
+    private final DriverService driverService = (DriverService) INJECTOR
             .getInstance(DriverService.class);
 
     @Override

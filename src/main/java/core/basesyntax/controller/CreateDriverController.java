@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class CreateDriverController extends HttpServlet {
-    private static final Injector ingector = Injector.getInstance("core.basesyntax");
-    private final DriverService driverService = (DriverService) ingector
+    private static final Injector INJECTOR = Injector.getInstance("core.basesyntax");
+    private final DriverService driverService = (DriverService) INJECTOR
             .getInstance(DriverService.class);
 
     @Override
@@ -25,8 +25,13 @@ public class CreateDriverController extends HttpServlet {
             throws ServletException, IOException {
         String name = req.getParameter("name");
         String licenseNumber = req.getParameter("licenseNumber");
-        Driver driver = new Driver(name, licenseNumber);
-        driverService.create(driver);
-        resp.sendRedirect(req.getContextPath() + "/");
+        if (!name.isEmpty() && !licenseNumber.isEmpty()) {
+            Driver driver = new Driver(name, licenseNumber);
+            driverService.create(driver);
+            resp.sendRedirect(req.getContextPath() + "/");
+        } else {
+            req.setAttribute("message", "Please, fill all fields");
+            req.getRequestDispatcher("/WEB-INF/views/driver/creation.jsp").forward(req, resp);
+        }
     }
 }

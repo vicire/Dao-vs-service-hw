@@ -17,7 +17,7 @@
 
     <servlet>
         <servlet-name>AllDrivers</servlet-name>
-        <servlet-class>core.basesyntax.controller.AllDriversController</servlet-class>
+        <servlet-class>core.basesyntax.controller.GetAllDriversController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -36,7 +36,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>AllManufacturers</servlet-name>
-        <servlet-class>core.basesyntax.controller.AllManufacturersController</servlet-class>
+        <servlet-class>core.basesyntax.controller.GetAllManufacturersController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -56,7 +56,7 @@
 
     <servlet>
         <servlet-name>AllCars</servlet-name>
-        <servlet-class>core.basesyntax.controller.AllCarsController</servlet-class>
+        <servlet-class>core.basesyntax.controller.GetAllCarsController</servlet-class>
     </servlet>
 
     <servlet-mapping>

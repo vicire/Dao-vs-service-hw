@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class CreateManufacturerController extends HttpServlet {
-    private static final Injector ingector = Injector.getInstance("core.basesyntax");
-    private final ManufacturerService manufacturerService = (ManufacturerService) ingector
+    private static final Injector INJECTOR = Injector.getInstance("core.basesyntax");
+    private final ManufacturerService manufacturerService = (ManufacturerService) INJECTOR
             .getInstance(ManufacturerService.class);
 
     @Override
@@ -25,8 +25,13 @@ public class CreateManufacturerController extends HttpServlet {
             throws ServletException, IOException {
         String brand = req.getParameter("brand");
         String country = req.getParameter("country");
-        Manufacturer manufacturer = new Manufacturer(brand, country);
-        manufacturerService.create(manufacturer);
-        resp.sendRedirect(req.getContextPath() + "/");
+        if (!brand.isEmpty() && !country.isEmpty()) {
+            Manufacturer manufacturer = new Manufacturer(brand, country);
+            manufacturerService.create(manufacturer);
+            resp.sendRedirect(req.getContextPath() + "/");
+        } else {
+            req.setAttribute("message", "Please, fill all fields");
+            req.getRequestDispatcher("/WEB-INF/views/manufacturer/creation.jsp").forward(req, resp);
+        }
     }
 }

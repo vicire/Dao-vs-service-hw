@@ -25,13 +25,8 @@ public class CreateManufacturerController extends HttpServlet {
             throws ServletException, IOException {
         String brand = req.getParameter("brand");
         String country = req.getParameter("country");
-        if (!brand.isEmpty() && !country.isEmpty()) {
-            Manufacturer manufacturer = new Manufacturer(brand, country);
-            manufacturerService.create(manufacturer);
-            resp.sendRedirect(req.getContextPath() + "/");
-        } else {
-            req.setAttribute("message", "Please, fill all fields");
-            req.getRequestDispatcher("/WEB-INF/views/manufacturer/creation.jsp").forward(req, resp);
-        }
+        Manufacturer manufacturer = new Manufacturer(brand, country);
+        manufacturerService.create(manufacturer);
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 }

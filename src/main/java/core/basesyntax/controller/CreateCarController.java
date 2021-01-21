@@ -29,14 +29,9 @@ public class CreateCarController extends HttpServlet {
         try {
             String model = req.getParameter("model");
             Long manufacturerId = Long.valueOf(req.getParameter("manufacturer_id"));
-            if (!model.isEmpty()) {
-                Car car = new Car(model, manufacturerService.get(manufacturerId));
-                carService.create(car);
-                resp.sendRedirect(req.getContextPath() + "/");
-            } else {
-                req.setAttribute("message", "Please, fill model field");
-                req.getRequestDispatcher("/WEB-INF/views/car/creation.jsp").forward(req, resp);
-            }
+            Car car = new Car(model, manufacturerService.get(manufacturerId));
+            carService.create(car);
+            resp.sendRedirect(req.getContextPath() + "/");
         } catch (NumberFormatException e) {
             req.setAttribute("message", "Please, enter numeric id");
             req.getRequestDispatcher("/WEB-INF/views/car/creation.jsp").forward(req, resp);

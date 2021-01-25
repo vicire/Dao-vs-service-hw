@@ -1,7 +1,5 @@
 package core.basesyntax.web.filter;
 
-import core.basesyntax.lib.Injector;
-import core.basesyntax.service.DriverService;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,15 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 
 public class AuthenticationFilter implements Filter {
     private static final String DRIVER_ID = "driverId";
-    private static final Injector INJECTOR = Injector.getInstance("core.basesyntax");
-    private final DriverService driverService = (DriverService) INJECTOR
-            .getInstance(DriverService.class);
-    private final Set<String> urls = new HashSet<>();
+    private final Set<String> allowedUrls = new HashSet<>();
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        urls.add("/login");
-        urls.add("/drivers/create");
+        allowedUrls.add("/login");
+        allowedUrls.add("/drivers/create");
     }
 
     @Override
@@ -33,12 +28,12 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         String url = req.getServletPath();
-        if (urls.contains(url)) {
+        if (allowedUrls.contains(url)) {
             filterChain.doFilter(req, resp);
             return;
         }
         Long driverId = (Long) req.getSession().getAttribute(DRIVER_ID);
-        if (driverId == null || driverService.get(driverId) == null) {
+        if (driverId == null) {
             resp.sendRedirect(req.getContextPath() + "/login");
             return;
         }

@@ -3,6 +3,8 @@ package core.basesyntax.web.filter;
 import core.basesyntax.lib.Injector;
 import core.basesyntax.service.DriverService;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -17,10 +19,12 @@ public class AuthenticationFilter implements Filter {
     private static final Injector INJECTOR = Injector.getInstance("core.basesyntax");
     private final DriverService driverService = (DriverService) INJECTOR
             .getInstance(DriverService.class);
+    private final Set<String> urls = new HashSet<>();
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        urls.add("/login");
+        urls.add("/drivers/create");
     }
 
     @Override
@@ -29,7 +33,7 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         String url = req.getServletPath();
-        if (url.equals("/login") || url.equals("/drivers/create")) {
+        if (urls.contains(url)) {
             filterChain.doFilter(req, resp);
             return;
         }
@@ -43,6 +47,5 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void destroy() {
-
     }
 }

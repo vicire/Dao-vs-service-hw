@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class GetMyCurrentCarsController extends HttpServlet {
     private static final String DRIVER_ID = "driverId";
-    private static final Injector INJECTOR = Injector.getInstance("core.basesyntax");
-    private final CarService carService = (CarService) INJECTOR.getInstance(CarService.class);
+    private static final Injector injector = Injector.getInstance("core.basesyntax");
+    private final CarService carService = (CarService) injector.getInstance(CarService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

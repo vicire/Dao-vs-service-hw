@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class DeleteManufacturerController extends HttpServlet {
-    private static final Injector INJECTOR = Injector.getInstance("core.basesyntax");
-    private final ManufacturerService manufacturerService = (ManufacturerService) INJECTOR
+    private static final Injector injector = Injector.getInstance("core.basesyntax");
+    private final ManufacturerService manufacturerService = (ManufacturerService) injector
             .getInstance(ManufacturerService.class);
 
     @Override

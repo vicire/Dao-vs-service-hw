@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class GetAllCarsController extends HttpServlet {
-    private static final Injector INJECTOR = Injector.getInstance("core.basesyntax");
-    private final CarService carService = (CarService) INJECTOR.getInstance(CarService.class);
+    private static final Injector injector = Injector.getInstance("core.basesyntax");
+    private final CarService carService = (CarService) injector.getInstance(CarService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

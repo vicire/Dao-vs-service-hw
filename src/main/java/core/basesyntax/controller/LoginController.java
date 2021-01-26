@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class LoginController extends HttpServlet {
-    private static final Injector INJECTOR = Injector.getInstance("core.basesyntax");
-    private final AuthenticationService authService = (AuthenticationService) INJECTOR
+    private static final Injector injector = Injector.getInstance("core.basesyntax");
+    private final AuthenticationService authService = (AuthenticationService) injector
             .getInstance(AuthenticationService.class);
 
     @Override

@@ -5,6 +5,7 @@ import core.basesyntax.lib.Inject;
 import core.basesyntax.lib.Service;
 import core.basesyntax.model.Driver;
 import core.basesyntax.service.DriverService;
+import java.util.Optional;
 
 @Service
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -13,12 +14,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public Driver login(String login, String password) throws AuthenticationException {
-        Driver driver = driverService.findByLogin(login)
-                .orElseThrow(() -> new AuthenticationException("Incorrect login. "
-                        + "Please, try again"));
-        if (driver.getPassword().equals(password)) {
-            return driver;
+        Optional<Driver> driver = driverService.findByLogin(login);
+        if (driver.isPresent() && driver.get().getPassword().equals(password)) {
+            return driver.get();
         }
-        throw new AuthenticationException("Incorrect password. Please, try again");
+        throw new AuthenticationException("Incorrect login or password. Please, try again");
     }
 }

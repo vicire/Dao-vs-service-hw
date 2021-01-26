@@ -13,5 +13,6 @@
 <a href="${pageContext.request.contextPath}/drivers">All drivers</a>
 <a href="${pageContext.request.contextPath}/manufacturers">All manufacturers</a>
 <a href="${pageContext.request.contextPath}/cars">All cars</a>
+<a href="${pageContext.request.contextPath}/cars/current">My current cars</a>
 </body>
 </html>
